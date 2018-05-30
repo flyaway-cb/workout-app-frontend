@@ -1,18 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import UserHistory from './pages/user_history'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+const BASE = 'http://localhost:3000'
 
 class App extends Component {
+constructor(props) {
+  super(props)
+  this.state={
+    history: []
+  }
+
+}
+
+componentWillMount() {
+  return fetch(BASE + '/user_histories')
+    .then((resp) => {
+      return resp.json()
+    })
+    .then(APIinfo => {
+      this.setState({
+        history: APIinfo
+        })
+      console.log(this.state.history);
+    })
+}
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Router>
+        <Switch>
+          <Route exact path ="/stats" render={(props) => <UserHistory history={this.state.history}/>} />
+        </Switch>
+      </Router>
       </div>
     );
   }
