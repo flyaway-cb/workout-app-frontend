@@ -1,57 +1,80 @@
 import React, { Component } from 'react';
 import {Table, TableHeader } from 'react-mdl';
 import './user_history.css';
+import LineChart from 'react-linechart';
 
 class UserHistory extends Component {
   render(){
+    const data = [
+        {
+            id: "My Stats",
+            color: "grey",
+            points: this.props.history.map((element, index) =>{
+                  return (
+                    {x: element.created_at.slice(0,10), y: element.weight }
+                  )
+              })
+
+            // points: [{x: 1, y: 2}, {x: 3, y: 5}, {x: 7, y: -3}]
+        }
+    ];
     return(
       <div>
-        <h2>User History</h2>
+        <h2>Your Stats</h2>
+                   <LineChart
+                        hideXLabel={true}
+                        pointRadius={2}
+                        hideLines={true}
+                        ticks={10}
+                        isDate={true}
+                        // onPointHover={(text) => console.log(text)}
+                        hideYLabel={true}
+                       width={600}
+                       height={200}
+                       data={data}
+                   /> <br/>
+
         <div className="table">
-
-                <Table
-                    sortable
-                    shadow={50}
-                    rows={  this.props.history.map((element, index) =>{
-                      console.log(element);
-                          return (
-                            {date: element.created_at.slice(0,10), name:  element.workout_name, sets:  element.set, reps: element.rep, weight: element.weight   }
-                          )
-                      }) }
-
-
-                >
-                  <TableHeader
+          <Table
+            sortable
+            shadow={50}
+            rows={  this.props.history.map((element, index) =>{
+                  return (
+                    {date: element.created_at.slice(0,10), movement: element.movement_id, name:  element.workout_name, sets:  element.set, reps: element.rep, weight: element.weight   }
+                  )
+              })}
+          >
+            <TableHeader  numeric  name="date"  tooltip="Sort by Date"> Date </TableHeader>
+            <TableHeader
+              name="movement"
               numeric
-              name="date"
-              tooltip="Sort by Date"
-        > Date
-        </TableHeader>
-        <TableHeader
-           name="name"
-           numeric
-           tooltip="Workout Name"
-       >
-           Workout Name
-       </TableHeader>
-       <TableHeader
-          numeric
-          name="sets"
-          tooltip="Sets"
-      >Sets</TableHeader>
-      <TableHeader
-         numeric
-         name="reps"
-         tooltip="Reps"
-     >Reps</TableHeader>
-     <TableHeader
-        numeric
-        name="weight"
-        tooltip="Weight"
-    >Weight</TableHeader>
-                {/* { element.created_at.slice(0,10) } { element.workout_name } { element.set } { element.rep }, { element.weight }, */}
-
-              </Table>
+              tooltip="Start a Movement"
+            >
+             Movement Name
+            </TableHeader>
+            <TableHeader
+              name="name"
+              numeric
+              tooltip="Workout Name"
+            >
+             Workout Name
+            </TableHeader>
+            <TableHeader
+              sortFn={ (a, b, isAsc) => (isAsc ? (b-a):(a-b)) }
+              name="sets"
+              tooltip="Sets"
+            >Sets</TableHeader>
+            <TableHeader
+              sortFn={ (a, b, isAsc) => (isAsc ? (b-a):(a-b)) }
+              name="reps"
+              tooltip="Steady Reppin'"
+            >Reps</TableHeader>
+            <TableHeader
+              sortFn={ (a, b, isAsc) => (isAsc ? (b-a):(a-b)) }
+              name="weight"
+              tooltip="Get Beefy"
+            >Weight</TableHeader>
+          </Table>
 
 
 
