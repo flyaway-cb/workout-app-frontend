@@ -4,8 +4,15 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import './App.css';
 import SignUpForm from './pages/SignUpForm'
 import LoginForm from './pages/LoginForm'
+import AuthService from './components/AuthService'
+
+const Auth = new AuthService()
 
 class App extends Component {
+  handleLogout(){ // <- Remove local storage, and redirect the user
+    Auth.logout()
+    this.props.history.replace('/login');
+  }
   render() {
     return (
       <div>

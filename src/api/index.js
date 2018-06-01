@@ -1,7 +1,7 @@
 const BASE = "http://localhost:3000"
 
 let registerUser = function(form){
-  return fetch(BASE+"/users/sign_up", {
+  return fetch(BASE+"/users", {
     body: JSON.stringify(form),
     header: {'Content-Type': 'application/json'
     },

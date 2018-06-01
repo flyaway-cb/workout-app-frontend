@@ -1,32 +1,30 @@
 import React, {Component} from 'react'
 import {TextField, Button, Card, CardContent} from '@material-ui/core'
-import {registerUser} from "../api"
+import AuthService from "../components/AuthService"
+import {handleErrors} from "../api"
 
 class LoginForm extends Component{
   constructor(props){
     super(props)
+    this.Auth = new AuthService()
     this.state = {
-      form: {
-        email: "",
-        password: "",
-      },
+      email: "",
+      password: "",
       loginSuccess: false
     }
   }
   handleChange(event){
-    let { form } = this.state
-    form[event.target.id] = event.target.value
-    this.setState({form})
+    this.setState({[event.target.id]: event.target.value})
+    console.log(this.state);
   }
   handleSubmit(event){
-    let {form} = this.state
-    registerUser(form).then(
+    this.Auth.login(this.state.email, this.state.password).then(handleErrors).then(
       this.setState({loginSuccess: true})
-    )
-    console.log(this.state.registerSuccess)
+    ).catch(errors => {console.log(errors)})
+    console.log(this.state.loginSuccess)
   }
   render(){
-    let form = this.state.form
+    let form = this.state
     return(
       <div className="sign-up-page">
         <Card className="form-card">
