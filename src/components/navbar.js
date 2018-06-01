@@ -12,17 +12,17 @@ export default class NavBar extends Component {
     <Header className="header-color" title="Fitology" scroll>
         <Navigation>
             <a href="/login">Login</a>
-            <a href="/">Register</a>
-            <a href="/">Stats</a>
-            <a href="/">About Us</a>
+            <a href="/register">Register</a>
+            <a href="/groupworkouts">Group Workouts</a>
+            <a href="/aboutus">About Us</a>
         </Navigation>
     </Header>
     <Drawer title="Fitology">
         <Navigation>
-            <a href="/">Login</a>
-            <a href="/">Register</a>
-            <a href="/">Stats</a>
-            <a href="/">About Us</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+            <a href="/groupworkouts">Group Workout</a>
+            <a href="/aboutus">About Us</a>
         </Navigation>
     </Drawer>
 
