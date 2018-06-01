@@ -18,16 +18,24 @@
   width: 200px;
 }
 
-#sign-up-button{
-  text-align: right;
-  padding-right: 10px;
-  padding-bottom: 10px
+.action-button{
+  margin-top: 5%;
 }
 
-#sign-up-page{
+.sign-up-page{
+}
+
+.form-card{
+  line-height: 300%;
   margin-top: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 5%;
+  max-width: 80px;
+  min-width: 75%;
+  text-align: center
 }
 
-span {
-  margin-left: 20px
+.text-field + .text-field{
+  margin-left: 10px;
 }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {Textfield, Button, Card, CardTitle, CardText, CardActions} from 'react-mdl'
+import {TextField, Button, Card, CardContent} from '@material-ui/core'
+import {registerUser} from "../api"
 
 class SignUpForm extends Component{
   constructor(props){
@@ -11,7 +12,8 @@ class SignUpForm extends Component{
         email: "",
         password: "",
         password_confirmation: ""
-      }
+      },
+      registerSuccess: false
     }
   }
   handleChange(event){
@@ -19,72 +21,71 @@ class SignUpForm extends Component{
     form[event.target.id] = event.target.value
     this.setState({form})
   }
-  handleSubmit(){
-    console.log(this.state.form)
+  handleSubmit(event){
+    let {form} = this.state
+    registerUser(form).then(
+      this.setState({registerSuccess: true})
+    )
+    console.log(this.state.registerSuccess)
   }
   render(){
     let form = this.state.form
     return(
       <div id="sign-up-page">
-        <Card shadow={0} style={{margin: 'auto'}}>
-          <CardTitle expand>Sign up for Fitology!</CardTitle>
-          <CardText id="sign-up-form">
-            <span>
-            <Textfield className="text-field"
+        <Card className="form-card">
+          <CardContent variant="headline" component="h2">Sign up for Fitology!</CardContent>
+          <CardContent id="sign-up-form">
+            <span className="text-field">
+            <TextField
                 label="First Name"
-                floatingLabel
                 style={{width: '200px'}}
                 id="first_name"
                 value={form.first_name}
                 onChange={this.handleChange.bind(this)}
             />
-          </span>
-          <span>
-            <Textfield className="text-field"
+          </span><br />
+          <span className="text-field">
+            <TextField
                 label="Last Name"
-                floatingLabel
                 style={{width: '200px'}}
                 id="last_name"
                 value={form.last_name}
                 onChange={this.handleChange.bind(this)}
             />
-          </span>
-          <span>
-            <Textfield className="text-field"
+          </span><br />
+          <span className="text-field">
+            <TextField
                 label="Email"
-                floatingLabel
                 style={{width: '200px'}}
                 id="email"
                 value={form.email}
                 onChange={this.handleChange.bind(this)}
             />
-          </span>
-          <span>
-            <Textfield className="text-field"
+          </span><br />
+          <span className="text-field">
+            <TextField
                 type="password"
                 label="Create Password"
-                floatingLabel
                 style={{width: '200px'}}
                 id="password"
                 value={form.password}
                 onChange={this.handleChange.bind(this)}
             />
-          </span>
-          <span>
-            <Textfield className="text-field"
+          </span><br />
+          <span className="text-field">
+            <TextField
                 type="password"
                 label="Confirm Password"
-                floatingLabel
                 style={{width: '200px'}}
                 id="password_confirmation"
                 value={this.state.form.password_confirmation}
                 onChange={this.handleChange.bind(this)}
             />
           </span>
-          </CardText>
-          <CardActions id="sign-up-button" >
-              <Button raised colored ripple onClick={this.handleSubmit.bind(this)}>Sign Up</Button>
-          </CardActions>
+        </CardContent>
+        <span className="action-button">
+          <Button variant="raised" color="primary" onClick={this.handleSubmit.bind(this)}>Sign Up</Button>
+        </span>
         </Card>
 
 
