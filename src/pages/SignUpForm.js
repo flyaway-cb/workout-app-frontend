@@ -22,7 +22,7 @@ class SignUpForm extends Component{
     this.setState({form})
   }
   handleSubmit(event){
-    let {form} = this.state
+    let { form } = this.state
     registerUser(form).then(
       this.setState({registerSuccess: true})
     )

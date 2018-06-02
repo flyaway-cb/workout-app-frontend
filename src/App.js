@@ -21,6 +21,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/sign_up" component={SignUpForm} />
             <Route exact path="/login" component={LoginForm} />
+            <Route exact path="/dashboard" render={ (props) => <Dashboard logout={this.handleLogout.bind(this)}/>} />
           </Switch>
         </Router>
 
