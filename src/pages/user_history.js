@@ -206,9 +206,6 @@ class UserHistory extends Component {
               <MenuItem value={element.movement}> {element.movement}</MenuItem>
              )
            })}
-           {/* <MenuItem value={10}>{this.state.myRows[0].movement}</MenuItem>
-           <MenuItem value={20}>{this.state.myRows[1].movement}</MenuItem>
-           <MenuItem value={30}>{this.state.myRows[2].movement}</MenuItem> */}
          </Select>
          <FormHelperText>Select your exercise movement above</FormHelperText>
             </FormControl>
