@@ -8,6 +8,16 @@ div{
 
 }
 
+.root{
+  justify-content: center;
+    display: flex;
+    flexWrap: wrap;
+  }
+
+.dropdown{
+  margin: auto;
+  min-width: 120px;
+}
 .table{
   display: flex;
   align-content: center;

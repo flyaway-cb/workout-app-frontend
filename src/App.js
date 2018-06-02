@@ -9,23 +9,22 @@ class App extends Component {
 constructor(props) {
   super(props)
   this.state={
-    history: []
   }
 
 }
 
-componentWillMount() {
-  return fetch(BASE + '/user_histories')
-    .then((resp) => {
-      return resp.json()
-    })
-    .then(APIinfo => {
-      this.setState({
-        history: APIinfo
-        })
-      console.log(this.state.history);
-    })
-}
+// componentWillMount() {
+//   return fetch(BASE + '/user_histories')
+//     .then((resp) => {
+//       return resp.json()
+//     })
+//     .then(APIinfo => {
+//       this.setState({
+//         history: APIinfo
+//         })
+//       console.log(this.state.history);
+//     })
+// }
 
 
   render() {

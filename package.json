@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^1.1.0",
+    "@material/select": "^0.35.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-linechart": "^1.1.12",
