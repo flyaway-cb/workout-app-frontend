@@ -5,6 +5,7 @@ import './App.css';
 import SignUpForm from './pages/SignUpForm'
 import LoginForm from './pages/LoginForm'
 import AuthService from './components/AuthService'
+import Dashboard from './pages/Dashboard'
 
 const Auth = new AuthService()
 
