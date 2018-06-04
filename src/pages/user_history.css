@@ -1,6 +1,6 @@
 body{
   background-color: #FFFFFF;
-  color: #336969;
+  color: #3f51b5;
 }
 
 div{
@@ -8,19 +8,32 @@ div{
 
 }
 
-.root{
+#blankspace{
+  width: 40px;
+}
+
+#chartbox{
+display: flex;
   justify-content: center;
-    display: flex;
-    flexWrap: wrap;
+}
+
+#chart{
+  width: 100px;
+}
+.root{
+
   }
 
 .dropdown{
-  margin: auto;
-  min-width: 120px;
+
+  padding: 500px;
+  margin-right: 100px;
+  padding-right: 200px;
+
 }
 .table{
   display: flex;
   align-content: center;
   justify-content: center;
-  color: #336969;
+  color: black;
 }

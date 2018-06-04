@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import {Table, TableHeader} from 'react-mdl';
 import './user_history.css';
-import LineChart from 'react-linechart';
+
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
+
 import FormControl from '@material-ui/core/FormControl'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Button from '@material-ui/core/Button'
+import ReactChartkick, { LineChart, PieChart } from 'react-chartkick'
+import Chart from 'chart.js'
+
+// ReactChartkick.addAdapter(Chart)
 
 const BASE = 'http://localhost:3000'
+
 
 const styles = theme => ({
   root: {
@@ -31,8 +37,15 @@ class UserHistory extends Component {
   constructor(props) {
     super(props)
     this.state={
+      chartdata: {},
+      reps: [],
+      xvals: [],
+      yvals: [],
       movement: '',
+      uniquemoves: [],
       myRows: [],
+      selectedMove: '',
+      selectedProperty: '',
       history: [
         {
           "id": 1,
@@ -65,9 +78,32 @@ class UserHistory extends Component {
                     //JOIN:
                     "reps": 10,
                     "weight": 25,
-                    "sets": 3,
+                    "sets": 1,
                     "date": "4/02/2018"
-                  }],
+                  },
+                  {
+                      id: 2,
+                      "name": "Kettle Bell Swings",
+                      bodypart: "Full Body",
+                      url: "http://www.google.com",
+                      description: "Swing that shit",
+                      //JOIN:
+                      "reps": 10,
+                      "weight": 30,
+                      "sets": 2,
+                      "date": "4/06/2018"
+                    },{
+                        id: 2,
+                        "name": "Kettle Bell Swings",
+                        bodypart: "Full Body",
+                        url: "http://www.google.com",
+                        description: "Swing that shit",
+                        //JOIN:
+                        "reps": 10,
+                        "weight": 35,
+                        "sets": 3,
+                        "date": "4/08/2018"
+                      }],
 
               }]
         } ,
@@ -105,7 +141,19 @@ class UserHistory extends Component {
                       "weight": "N/A",
                       "sets": 2,
                       "date": "4/22/2018"
-                    }]
+                    },
+                    {
+                        id: 2,
+                        "name": "Kettle Bell Swings",
+                        bodypart: "Full Body",
+                        url: "http://www.google.com",
+                        description: "Swing that shit",
+                        //JOIN:
+                        "reps": 10,
+                        "weight": 35,
+                        "sets": 3,
+                        "date": "4/12/2018"
+                      }]
 
                 }
               ]
@@ -115,6 +163,7 @@ class UserHistory extends Component {
       }
   componentWillMount() {
     this.getMoves()
+    this.filterMoves()
   }
   //   return fetch(BASE + '/user_histories')
   //     .then((resp) => {
@@ -128,12 +177,13 @@ class UserHistory extends Component {
   //     })
   // }
 
+
+
   getMoves(){
     let newRows = this.state.myRows
     this.state.history.forEach((element, index) =>{
                element.workout.forEach((e,i)=> {
                  e.movement.forEach((ele,ind)=> {
-                      console.log(ele.name)
                         newRows.push(
                          {movement: ele.name, weight: ele.weight, date: ele.date, reps: ele.reps, sets: ele.sets}
                         )
@@ -141,76 +191,102 @@ class UserHistory extends Component {
              })
       })
       this.setState({myRows: newRows})
-      console.log(this.state.myRows);
   }
 
-  handleChange = event => {
-     this.setState({ [event.target.name]: event.target.value });
+
+  filterMoves(){
+    const unique = [...new Set(this.state.myRows.map(element=> element.movement))];
+    this.setState({uniquemoves: unique});
+  }
+
+  selectMove = event => {
+    this.setState({ [event.target.name]: event.target.value, selectedMove: event.target.value})
    };
 
+   selectProperty = event => {
+     this.setState({ [event.target.name]: event.target.value, selectedProperty: event.target.value })
+    };
+
+generateChartData(){
+  let xvals = []
+  let yvals = []
+  let chartdata = {}
+  console.log(this.state.myRows);
+  this.state.myRows.forEach((element, index)=>
+{
+  console.log("selected Prop:")
+  console.log();
+  console.log(this.state.selectedProperty)
+  console.log(this.state.selectedProperty)
+
+  let selectedProp = this.state.selectedProperty
+    console.log(selectedProp)
+  if(element.movement === this.state.selectedMove && selectedProp === "reps"){
+    xvals.push(element.date)
+    yvals.push(element.reps)
+    index = element.date
+    chartdata[index] = (element.reps)
+}
+if(element.movement === this.state.selectedMove && selectedProp === "weight"){
+  xvals.push(element.date)
+  yvals.push(element.weight)
+  index = element.date
+  chartdata[index] = (element.weight)
+}
+}
+)
+this.setState({ xvals: xvals, yvals: yvals, chartdata: chartdata})
+}
+
+
   render(){
-    const { classes } = this.props
-
-    const data = [
-        {
-            id: "My Stats",
-            color: "grey",
-            points:
-
-            this.state.history.map((element, index) =>{
-                  return (
-                    {x: element.created_at.slice(0,10), y: element.weight }
-                  )
-              })
-
-            // points: [{x: 1, y: 2}, {x: 3, y: 5}, {x: 7, y: -3}]
-        }
-    ];
-
-
-//   this.state.history.map((element, index) =>{
-//           return (
-//              element.workout.map((e,i)=> {
-//                return(
-//                 this.state.rows =  e.movement.map((ele,ind)=> {
-//                     console.log(ele.name)
-//                       return({
-//                         movement: ele.name
-//
-//                       })
-//                   })
-//               )
-//            })
-//         )
-//     })
-// console.log(this.state.rows);
-
-    return(
-      <div>
-        <h2>Your Stats</h2>
-{console.log(this.state.myRows[0].movement)}
-
- <form className="root" autoComplete="off">
+  return(
+    <div>
+      <h2>Your Stats</h2>
+{console.log(this.state.myRows)}
+{/* {console.log(this.state.uniquemoves)} */}
+      <form className="root">
        <FormControl className="dropdown">
-         <InputLabel htmlFor="movement_id">Movement</InputLabel>
          <Select
            value={this.state.movement}
-           onChange={this.handleChange}
+           onChange={this.selectMove}
            input={<Input name="movement" id="movement_id" />}
          >
            <MenuItem value="">
              <em>Select Movement:</em>
            </MenuItem>
-           {this.state.myRows.map((element)=>{
+           {this.state.uniquemoves.map((element)=>{
              return(
-              <MenuItem value={element.movement}> {element.movement}</MenuItem>
+              <MenuItem value={element}> {element}</MenuItem>
              )
            })}
          </Select>
-         <FormHelperText>Select your exercise movement above</FormHelperText>
-            </FormControl>
-          </form>
-<br/><br/><br/><br/><br/><br/>
+         <FormHelperText>Movement</FormHelperText>
+         </FormControl>
+         <FormControl> <div id="blankspace"></div>   </FormControl>
+
+ <FormControl className="dropdown">
+  <Select
+    value={this.state.age}
+    onChange={this.selectProperty}
+    displayEmpty
+    name="age"
+  
+  >
+    <MenuItem value="">
+      <em>All</em>
+    </MenuItem>
+    <MenuItem value={"reps"}>Reps</MenuItem>
+    <MenuItem value={'weight'}>Weight</MenuItem>
+  </Select>
+  <FormHelperText>Property</FormHelperText>
+</FormControl>
+     <FormControl><div id="blankspace"></div> </FormControl>
+<Button variant="contained" color="primary" onClick={this.generateChartData.bind(this)}>
+       Go!
+     </Button>
+
+  {/* this.generateChartData() */}
 
 
 
@@ -218,18 +294,36 @@ class UserHistory extends Component {
 
 
 
-                   <LineChart
+
+</form>
+
+
+{/* {let dataArr = this.state.xvals.map((element)=>{
+  rr
+} )  } */}
+<div id="chartbox">
+{/* <LineChart id="chart" width="400px" height="200px" data={{"2017-05-13": 2, "2017-05-14": 5}} />
+
+
+{console.log(this.state.xvals[0])}
+{console.log(this.state.yvals[0])} */}
+
+ <LineChart id="chart" width="400px" height="200px" data={ this.state.chartdata }   />
+
+
+</div>
+                   {/* <LineChart
                         hideXLabel={true}
                         pointRadius={2}
                         hideLines={true}
                         ticks={10}
-                        isDate={true}
+                        // isDate={true}
                         // onPointHover={(text) => console.log(text)}
                         hideYLabel={true}
                        width={600}
                        height={200}
                        data={data}
-                   /> <br/>
+                   /> <br/> */}
 
         <div className="table">
           <Table
@@ -276,4 +370,4 @@ class UserHistory extends Component {
 }
 
 
-export default UserHistory;
+export default withStyles(styles)(UserHistory);
