@@ -203,24 +203,24 @@ class UserHistory extends Component {
     this.setState({ [event.target.name]: event.target.value, selectedMove: event.target.value})
    };
 
-   selectProperty = event => {
-     this.setState({ [event.target.name]: event.target.value, selectedProperty: event.target.value })
-    };
+selectProperty = event => {
+  this.setState({ [event.target.name]: event.target.value, selectedProperty: event.target.value })
+}
+  // selectProperty(event){
+  //     this.setState({ [event.target.name]: event.target.value, selectedProperty: event.target.value })
+  //    console.log(this.state.selectedProperty);
+  //   };
 
 generateChartData(){
   let xvals = []
   let yvals = []
   let chartdata = {}
-  console.log(this.state.myRows);
   this.state.myRows.forEach((element, index)=>
 {
-  console.log("selected Prop:")
-  console.log();
-  console.log(this.state.selectedProperty)
-  console.log(this.state.selectedProperty)
 
   let selectedProp = this.state.selectedProperty
-    console.log(selectedProp)
+  console.log("selected Prop:")
+  console.log(selectedProp)
   if(element.movement === this.state.selectedMove && selectedProp === "reps"){
     xvals.push(element.date)
     yvals.push(element.reps)
@@ -243,7 +243,8 @@ this.setState({ xvals: xvals, yvals: yvals, chartdata: chartdata})
   return(
     <div>
       <h2>Your Stats</h2>
-{console.log(this.state.myRows)}
+    <h4> {this.state.selectedMove}</h4>
+{console.log(this.state.chartData)}
 {/* {console.log(this.state.uniquemoves)} */}
       <form className="root">
        <FormControl className="dropdown">
@@ -271,7 +272,7 @@ this.setState({ xvals: xvals, yvals: yvals, chartdata: chartdata})
     onChange={this.selectProperty}
     displayEmpty
     name="age"
-  
+    className=""
   >
     <MenuItem value="">
       <em>All</em>
@@ -302,33 +303,13 @@ this.setState({ xvals: xvals, yvals: yvals, chartdata: chartdata})
   rr
 } )  } */}
 <div id="chartbox">
-{/* <LineChart id="chart" width="400px" height="200px" data={{"2017-05-13": 2, "2017-05-14": 5}} />
-
-
-{console.log(this.state.xvals[0])}
-{console.log(this.state.yvals[0])} */}
-
- <LineChart id="chart" width="400px" height="200px" data={ this.state.chartdata }   />
-
-
+  <LineChart id="chart" width="400px" height="200px" data={ this.state.chartdata }   />
 </div>
-                   {/* <LineChart
-                        hideXLabel={true}
-                        pointRadius={2}
-                        hideLines={true}
-                        ticks={10}
-                        // isDate={true}
-                        // onPointHover={(text) => console.log(text)}
-                        hideYLabel={true}
-                       width={600}
-                       height={200}
-                       data={data}
-                   /> <br/> */}
-
+<br/>
         <div className="table">
           <Table
             sortable
-            shadow={50}
+            shadow={5}
             rows={  this.state.myRows }
           >
             <TableHeader  numeric  name="date"  tooltip="Sort by Date"> Date </TableHeader>
@@ -363,10 +344,6 @@ this.setState({ xvals: xvals, yvals: yvals, chartdata: chartdata})
   </div>
     )
   }
-
-
-
-
 }
 
 

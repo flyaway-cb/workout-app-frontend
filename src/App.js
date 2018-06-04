@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import UserHistory from './pages/user_history'
-import NativeSelects from './pages/testselects'
+import CreateMovement from './pages/create_movement'
+import CreateWorkout from './pages/create_workout'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const BASE = 'http://localhost:3000'
@@ -33,7 +34,8 @@ constructor(props) {
       <div className="App">
         <Router>
         <Switch>
-          <Route exact path ="/test" render={(props) => <NativeSelects history={this.state.history}/>} />
+          <Route exact path ="/moves" render={(props) => <CreateMovement history={this.state.history}/>} />
+          <Route exact path ="/newworkout" render={(props) => <CreateWorkout history={this.state.history}/>} />
           <Route exact path ="/stats" render={(props) => <UserHistory history={this.state.history}/>} />
         </Switch>
       </Router>

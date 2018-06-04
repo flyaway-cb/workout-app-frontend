@@ -8,6 +8,7 @@ div{
 
 }
 
+
 #blankspace{
   width: 40px;
 }
@@ -25,7 +26,6 @@ display: flex;
   }
 
 .dropdown{
-
   padding: 500px;
   margin-right: 100px;
   padding-right: 200px;
