@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Main from './pages/main';
 import Navbar from './components/navbar';
+import Footer from './components/Footer'
 
 import { withRouter } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,6 +23,7 @@ class App extends Component {
         <CssBaseline />
         <Navbar/>
         <Main/>
+        <Footer />
       </div>
     )
   }
