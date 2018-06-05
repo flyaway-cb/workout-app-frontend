@@ -62,9 +62,9 @@ class LogWorkout extends Component{
 
 handleReps(event){
   let { reps } = this.state
-  if(reps != []){
   reps[event.target.id] = event.target.value
-} else reps = [0,0,0]
+  console.log("Event value:");
+  console.log(event.target.value);
   this.setState({reps: reps})
 }
 
@@ -101,7 +101,7 @@ nextSet(){
   //     //JOIN:
   //     duration: "1 minute"
   //   }]
-  this.setState({setNum: setNum, reps: []})
+  this.setState({setNum: setNum, reps: [0,0,0]})
 
 
 }
@@ -155,14 +155,14 @@ saveAndQuit(){
 
                      <TableRow key={n.id}>
                        <TableCell component="th" scope="row" style={{padding: '8px', width: '5px', textAlign: 'center'}}>
-                         {index+1} hi ! {this.state.reps[index]}
+                         {index+1}
                        </TableCell>
                        <TableCell component="th" scope="row" style={{padding: '8px', width: '50px', textAlign: 'center'}}>
                          {n.name}
                        </TableCell>
                        <TableCell numeric style={{width: '50px',  padding: '8px', textAlign: 'center'}}>{n.duration}</TableCell>
 
-                       <TableCell numeric style={{width: '60px',  padding: '8px', textAlign: 'center'}}>{this.state.reps[index]}<Input id={index} value={this.state.reps[index]} placeholder='0' type='number' style={{width: '30px'}} onChange={this.handleReps.bind(this)}/></TableCell>
+                       <TableCell numeric style={{width: '60px',  padding: '8px', textAlign: 'center'}}><Input id={index} value={this.state.reps[index]} onChange={this.handleReps.bind(this)} placeholder='0' type='number' style={{width: '30px'}} /></TableCell>
                        <TableCell numeric style={{width: '60px',  padding: '8px', textAlign: 'center'}}><Input id={index} placeholder='lbs' type='number' style={{width: '45px'}} onChange={this.handleWeight.bind(this)}></Input></TableCell>
                        <TableCell numeric style={{padding: '0px',width: '20px', textAlign: 'center'}}><Checkbox
           name = "checked"
