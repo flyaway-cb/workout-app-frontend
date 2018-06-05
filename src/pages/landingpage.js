@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 class Landing extends Component {
   render() {
     return(
-      <div className="landing-grid">
+      <div className="landing-grid back">
           <div className="card_color">
               <img className="lp-image" src="./assets/images/findaworkout.jpeg"/>
           </div>
