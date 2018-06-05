@@ -42,5 +42,4 @@ let handleErrors = function(response){
   return response
 }
 
-export {handleErrors}
-
+export {handleErrors, addMove}

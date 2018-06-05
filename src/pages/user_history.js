@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import {Table, TableHeader} from 'react-mdl';
+
 import './user_history.css';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Input from '@material-ui/core/Input';
-
-import FormControl from '@material-ui/core/FormControl'
+import {Paper, FormControl, Button, Checkbox, Table, TableHead, TableCell, TableBody, TableRow, Input} from '@material-ui/core'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import Button from '@material-ui/core/Button'
 import ReactChartkick, { LineChart, PieChart } from 'react-chartkick'
 import Chart from 'chart.js'
 
@@ -307,34 +304,95 @@ this.setState({ xvals: xvals, yvals: yvals, chartdata: chartdata})
 </div>
 <br/>
         <div className="table">
+
+{console.log("myRows:")}
+{console.log(this.state.myRows)}
+
+          <Table className="log-table">
+
+            <TableHead>
+              <TableRow>
+                <TableCell style={{padding: '8px',width: '5px', textAlign: 'center'}}>Date</TableCell>
+                <TableCell style={{padding: '8px',width: '50px', textAlign: 'center'}}>Movement</TableCell>
+                <TableCell numeric style={{width: '50px',  padding: '8px', textAlign: 'center'}} >Weight</TableCell>
+                <TableCell numeric style={{width: '60px',  padding: '8px', textAlign: 'center'}}>Max Reps</TableCell>
+                <TableCell numeric style={{width: '60px',  padding: '8px', textAlign: 'center'}}>On Set</TableCell>
+
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.state.myRows.map((n, index) => {
+                return (
+
+                  <TableRow key={n.id}>
+                    <TableCell component="th" scope="row" style={{padding: '8px', width: '5px', textAlign: 'center'}}>
+                      {n.date}
+                    </TableCell>
+                    <TableCell component="th" scope="row" style={{padding: '8px', width: '50px', textAlign: 'center'}}>
+                      {n.movement}
+                    </TableCell>
+                    <TableCell numeric style={{width: '50px',  padding: '8px', textAlign: 'center'}}>{n.weight}</TableCell>
+
+                    <TableCell numeric style={{width: '60px',  padding: '8px', textAlign: 'center'}}></TableCell>
+                    <TableCell numeric style={{width: '60px',  padding: '8px', textAlign: 'center'}}></TableCell>
+              
+                  </TableRow>
+                );
+              })}
+
+
+          </TableBody>
+          </Table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <Table
             sortable
             shadow={5}
             rows={  this.state.myRows }
           >
-            <TableHeader  numeric  name="date"  tooltip="Sort by Date"> Date </TableHeader>
-            <TableHeader
+            <TableHead  numeric  name="date"  tooltip="Sort by Date"> Date </TableHead>
+            <TableHead
               name="movement"
               numeric
               tooltip="Start a Movement"
             >
              Movement Name
-            </TableHeader>
-            <TableHeader
+           </TableHead>
+            <TableHead
               sortFn={ (a, b, isAsc) => (isAsc ? (b-a):(a-b)) }
               name="weight"
               tooltip="Get Beefy"
-            >Weight</TableHeader>
-            <TableHeader
+            >Weight</TableHead>
+            <TableHead
               sortFn={ (a, b, isAsc) => (isAsc ? (b-a):(a-b)) }
               name="reps"
               tooltip="Steady Reppin'"
-            >Max Reps</TableHeader>
-            <TableHeader
+            >Max Reps</TableHead>
+            <TableHead
               sortFn={ (a, b, isAsc) => (isAsc ? (b-a):(a-b)) }
               name="sets"
               tooltip="Sets"
-            >Set Number</TableHeader>
+            >Set Number</TableHead>
 
           </Table>
 

@@ -47,7 +47,7 @@ constructor(props) {
             <Route exact path="/sign_up" component={SignUpForm} />
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/log" component={LogTable} />
+        
        <Route exact path ="/moves" render={(props) => <CreateMovement history={this.state.history}/>} />
           <Route exact path ="/newworkout" render={(props) => <CreateWorkout history={this.state.history}/>} />
           <Route exact path ="/stats" render={(props) => <UserHistory history={this.state.history}/>} />
