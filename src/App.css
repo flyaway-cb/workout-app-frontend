@@ -36,16 +36,35 @@
 
 }
 
-.card_color {
-  background: #a8c0ff;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #3f2b96, #a8c0ff);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #3f2b96, #a8c0ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  min-height: 90vh;
+.lp-image{
+  max-width:100%;
+  max-height:100%;
 }
 
+.card_color {
+   /* background: #a8c0ff;  /* fallback for old browsers */
+   /* background: -webkit-linear-gradient(to right, #3f2b96, #a8c0ff);  /* Chrome 10-25, Safari 5.1-6 */ */
+   /* background: linear-gradient(to right, #3f2b96, #a8c0ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ */ */
+
+   height: 90vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border: none;
+   padding-bottom: 80px;
+   margin: 0 auto;
+   background-attachment: fixed;
+
+
+}
+
+.lp-image {
+     border-radius: 8px;
+}
 
 .landing-grid {
   display: flex;
   flex-direction: row;
-  min-height: 100vh;
+  min-height: 95.8vh;
 }
