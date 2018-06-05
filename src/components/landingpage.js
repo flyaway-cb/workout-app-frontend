@@ -1,23 +1,64 @@
 import React, { Component } from 'react';
-import { Grid, Cell } from 'react-mdl';
+import { Card, CardActions, CardContent, CardMedia, Typography, Button } from '@material-ui/core/';
 
-
+const styles = {
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  },
+};
 
 class Landing extends Component {
   render() {
     return(
       <div >
-        <Grid className="landing-grid">
-          <Cell col={6}>
-            <img src="/assets/images/findaworkout.png" className="avatar-img" alt="Icon Image"/>
-          </Cell>
-          <Cell col={6}>
-            <img src="/assets/images/logaworkout.png" className="avatar-a"/>
-          </Cell>
-            <div className="landing-foot"><h4> Terms of Service | Privacy Policy © 2018 FITOLOGY All Rights Reserved.</h4></div>
-        </Grid>
-
-
+          <Card className="card_color">
+            <CardMedia>
+              <img src="./assets/images/findaworkout.png"/>
+            </CardMedia>
+            <CardContent>
+            <Typography gutterBottom variant="headline" component="h2">
+           Lizard
+         </Typography>
+         <Typography component="p">
+           Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+           across all continents except Antarctica
+         </Typography>
+       </CardContent>
+       <CardActions>
+          <Button size="small" color="primary">
+            Share
+          </Button>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </CardActions>
+          </Card>
+          <Card className="card_color_a">
+            <CardMedia>
+              <img src="./assets/images/logaworkout.png"/>
+            </CardMedia>
+            <CardContent>
+            <Typography gutterBottom variant="headline" component="h2">
+           Lizard
+         </Typography>
+         <Typography component="p">
+           Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+           across all continents except Antarctica
+         </Typography>
+       </CardContent>
+       <CardActions>
+          <Button size="small" color="primary">
+            Share
+          </Button>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </CardActions>
+          </Card>
     </div>
     )
   }
