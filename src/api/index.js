@@ -1,18 +1,18 @@
 const BASE = "http://localhost:3000"
 
-let registerUser = function(form){
-  return fetch(BASE+"/users", {
-    body: JSON.stringify(form),
-    header: {'Content-Type': 'application/json'
-    },
-    method: "POST"
-  }).then(handleErrors)
-  .then( rawResponse => {
-    let parsedResponse = rawResponse.json()
-    return parsedResponse
-  }).catch(error => {
-    console.log("error")
+let registerUser = function(user){
+  let newUser = {user: user}
+  return fetch(BASE+'/users', {
+      body: JSON.stringify(newUser),
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      method: "POST"
   })
+      .then((rawResponse) => {
+          let parsedResponse = rawResponse.json()
+          return parsedResponse
+      })
 }
 
  export {registerUser}

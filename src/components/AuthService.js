@@ -9,19 +9,22 @@ export default class AuthService {
     }
 
     login(email, password) {
-      return this.fetch(`${this.domain}/users/sign_in`, { // Our backend endpoint
+      return this.fetch(`${this.domain}/user_token`, { // Our backend endpoint
         method: 'POST',
         body: JSON.stringify({
-          user: { // We pass in email and password from the login form
+          auth: { // We pass in email and password from the login form
             email,
             password
           }
         })
+      }).then(res => {
+        this.setToken(res.jwt)
+        return Promise.resolve(res);
       })
     }
 
     loggedIn() { // A check to see if user is logged in
-      const token = this._getTokenFromLocalStorage()
+      const token = this.getToken()
       return !!token && !this.isTokenExpired(token)
     }
 
@@ -41,6 +44,16 @@ export default class AuthService {
       }
     }
 
+    // The token is stored in the browser
+    setToken(idToken) {
+      localStorage.setItem('id_token', idToken)
+    }
+
+    // Fetch the token from local storage
+    getToken() {
+      return localStorage.getItem('id_token')
+    }
+
     // Removes the token
     logout() {
       localStorage.removeItem('id_token');
@@ -48,7 +61,7 @@ export default class AuthService {
 
     // We can decode the token and find the user's ID for subsequent calls to the server
     getUserId() {
-      const token = decode(this._getTokenFromLocalStorage());
+      const token = decode(this.getToken());
       return token.sub
     }
 
@@ -61,16 +74,15 @@ export default class AuthService {
       }
 
       if (this.loggedIn()) {
-        headers['Authorization'] = this._getTokenFromLocalStorage()
+        headers['Authorization'] = 'Bearer ' + this.getToken()
       }
 
       return fetch(url, {
         headers,
         ...options
       })
-      .then(this._checkStatus.bind(this))
-      .then(this._captureToken.bind(this))
-      .then(response => response.json())
+      .then(this._checkStatus)
+      .then(response => response.json()).catch()
     }
 
     _checkStatus(response) {
@@ -81,23 +93,5 @@ export default class AuthService {
         error.response = response
         throw error
       }
-    }
-
-    _captureToken(response){
-      var header = response.headers.get("Authorization")
-      if(header){
-        this._setTokenInLocalStorage(response.headers.get("Authorization"))
-      }
-      return response
-    }
-
-    // The token is stored in the browser
-    _setTokenInLocalStorage(idToken) {
-      localStorage.setItem('id_token', idToken)
-    }
-
-    // Fetch the token from local storage
-    _getTokenFromLocalStorage() {
-      return localStorage.getItem('id_token')
-    }
+   }
 }
