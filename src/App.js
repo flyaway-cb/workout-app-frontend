@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import './App.css';
+import Main from './components/main';
+import NavBar from './components/navbar';
 
 import { withRouter, Switch, Route } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import './App.css';
 import SignUpForm from './pages/SignUpForm'
 import LoginForm from './pages/LoginForm'
 import Dashboard from './pages/Dashboard'
-// import UserHistory from './pages/UserHistory'
 import UserHistory from './pages/user_history'
 import CreateMovement from './pages/create_movement'
 import CreateWorkout from './pages/create_workout'
@@ -41,6 +42,9 @@ constructor(props) {
   render() {
     return (
 
+      <div className="back">
+        <NavBar/>
+        <Main/>
       <div>
         <CssBaseline />
           <Switch>
@@ -55,7 +59,6 @@ constructor(props) {
           <Route exact path ="/new" render={(props) => <WorkoutPage history={this.state.history}/>} />
             {/* <Route exact path="/user-history" component={UserHistory} /> */}
           </Switch>
-
 
       </div>
     );
