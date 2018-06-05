@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {TextField, Button, Card, CardContent} from '@material-ui/core'
 import AuthService from "../components/AuthService"
-import {handleErrors} from "../api"
+
 
 class LoginForm extends Component{
   constructor(props){
@@ -13,16 +13,19 @@ class LoginForm extends Component{
       loginSuccess: false
     }
   }
+
   handleChange(event){
     this.setState({[event.target.id]: event.target.value})
-    console.log(this.state);
   }
+
   handleSubmit(event){
-    this.Auth.login(this.state.email, this.state.password).then(handleErrors).then(
-      this.setState({loginSuccess: true})
-    ).catch(errors => {console.log(errors)})
-    console.log(this.state.loginSuccess)
+    this.Auth.login(this.state.email,this.state.password)
+    .then(res =>{
+      this.props.history.replace('/dashboard')
+    })
+    .catch(err =>{ alert(err) })
   }
+
   render(){
     let form = this.state
     return(

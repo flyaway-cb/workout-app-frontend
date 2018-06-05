@@ -6,7 +6,7 @@ class SignUpForm extends Component{
   constructor(props){
     super(props)
     this.state = {
-      form: {
+      user: {
         first_name: "",
         last_name: "",
         email: "",
@@ -17,19 +17,18 @@ class SignUpForm extends Component{
     }
   }
   handleChange(event){
-    let { form } = this.state
-    form[event.target.id] = event.target.value
-    this.setState({form})
+    let { user } = this.state
+    user[event.target.id] = event.target.value
+    this.setState({user: user})
   }
   handleSubmit(event){
-    let { form } = this.state
-    registerUser(form).then(
-      this.setState({registerSuccess: true})
-    )
-    console.log(this.state.registerSuccess)
+    registerUser(this.state.user).then( successUser => {
+            console.log("Create Success!", successUser ); this.setState({registerSuccess: true})
+        })
+    console.log(this.state.user);
   }
   render(){
-    let form = this.state.form
+    let form = this.state.user
     return(
       <div id="sign-up-page">
         <Card className="form-card">
@@ -78,7 +77,7 @@ class SignUpForm extends Component{
                 label="Confirm Password"
                 style={{width: '200px'}}
                 id="password_confirmation"
-                value={this.state.form.password_confirmation}
+                value={form.password_confirmation}
                 onChange={this.handleChange.bind(this)}
             />
           </span>
