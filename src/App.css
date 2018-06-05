@@ -67,4 +67,29 @@
   display: flex;
   flex-direction: row;
   min-height: 95.8vh;
+
+.text-field{
+  width: 200px;
 }
+
+.action-button{
+  margin-top: 5%;
+}
+
+.sign-up-page{
+}
+
+.form-card{
+  line-height: 300%;
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 5%;
+  max-width: 400px;
+  min-width: 200px;
+  text-align: center
+}
+/* 
+.text-field + .text-field{
+  margin-left: 10px;
+} */
