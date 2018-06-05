@@ -5,10 +5,7 @@ import AuthService from '../components/AuthService'  // <- We use the AuthServic
 const Auth = new AuthService()
 
 class Dashboard extends Component{
-  handleLogout(){ // <- Remove local storage, and redirect the user
-      Auth.logout()
-      this.props.history.push('/login');
-    }
+
 
     render() {
       return (
@@ -16,9 +13,7 @@ class Dashboard extends Component{
           <header className="App-header">
             <h1 className="App-title">Welcome to React</h1>
           </header>
-          <p className="App-intro">
-            <button type="button" className="form-submit" onClick={this.handleLogout.bind(this)}>Logout</button>
-          </p>
+    
         </div>
       )
     }

@@ -59,6 +59,11 @@
 
 }
 
+.topnav{
+  display: flex;
+  float: right;
+}
+
 .lp-image {
      border-radius: 8px;
 }
