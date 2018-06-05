@@ -10,22 +10,14 @@
   background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.landing-grid {
-  padding-top: 100px;
-  display: flex;
-  flex-direction: row;
-  min-height: 99vh;
-}
 
 .avatar-img {
-  height: 700px;
   display: flex;
   margin-top: 10%;
   justify-content: center;
 }
 
-.avatar-a{
-  height: 700px;
+.avatar-a {
   display: flex;
   margin-top: 10%;
   justify-content: center;
@@ -48,13 +40,12 @@
   background: #a8c0ff;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #3f2b96, #a8c0ff);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #3f2b96, #a8c0ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  min-height: 90vh;
 }
 
-.card_color_a {
-  background: #a8c0ff;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #3f2b96, #a8c0ff);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #3f2b96, #a8c0ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-
+.landing-grid {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
 }

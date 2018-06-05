@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
 import { Card, CardActions, CardContent, CardMedia, Typography, Button } from '@material-ui/core/';
 
-const styles = {
-  card: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-};
+
 
 class Landing extends Component {
   render() {
     return(
-      <div >
+      <div className="landing-grid">
           <Card className="card_color">
             <CardMedia>
-              <img src="./assets/images/findaworkout.png"/>
+              <img src="./assets/images/findaworkout.jpeg"/>
             </CardMedia>
             <CardContent>
             <Typography gutterBottom variant="headline" component="h2">
@@ -37,9 +29,9 @@ class Landing extends Component {
           </Button>
         </CardActions>
           </Card>
-          <Card className="card_color_a">
+          <Card className="card_color">
             <CardMedia>
-              <img src="./assets/images/logaworkout.png"/>
+              <img src="./assets/images/logaworkout.jpeg"/>
             </CardMedia>
             <CardContent>
             <Typography gutterBottom variant="headline" component="h2">
