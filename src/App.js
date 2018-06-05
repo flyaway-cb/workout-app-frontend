@@ -3,6 +3,8 @@ import './App.css';
 import UserHistory from './pages/user_history'
 import CreateMovement from './pages/create_movement'
 import CreateWorkout from './pages/create_workout'
+import LogWorkout from './pages/log_workout'
+import WorkoutPage from './pages/workout_page'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const BASE = 'http://localhost:3000'
@@ -37,6 +39,8 @@ constructor(props) {
           <Route exact path ="/moves" render={(props) => <CreateMovement history={this.state.history}/>} />
           <Route exact path ="/newworkout" render={(props) => <CreateWorkout history={this.state.history}/>} />
           <Route exact path ="/stats" render={(props) => <UserHistory history={this.state.history}/>} />
+          <Route exact path ="/log" render={(props) => <LogWorkout history={this.state.history}/>} />
+          <Route exact path ="/new" render={(props) => <WorkoutPage history={this.state.history}/>} />
         </Switch>
       </Router>
       </div>

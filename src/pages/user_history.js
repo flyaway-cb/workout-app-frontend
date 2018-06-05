@@ -278,7 +278,7 @@ this.setState({ xvals: xvals, yvals: yvals, chartdata: chartdata})
       <em>All</em>
     </MenuItem>
     <MenuItem value={"reps"}>Reps</MenuItem>
-    <MenuItem value={'weight'}>Weight</MenuItem>
+    <MenuItem value={"weight"}>Weight</MenuItem>
   </Select>
   <FormHelperText>Property</FormHelperText>
 </FormControl>
