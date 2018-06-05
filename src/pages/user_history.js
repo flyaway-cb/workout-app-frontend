@@ -161,18 +161,18 @@ class UserHistory extends Component {
   componentWillMount() {
     this.getMoves()
     this.filterMoves()
+
+    // return fetch(BASE + '/user_histories' +'?id=1')
+    //   .then((resp) => {
+    //     return resp.json()
+    //   })
+    //   .then(APIinfo => {
+    //     this.setState({
+    //       history: APIinfo
+    //       })
+    //     console.log(this.state.history);
+    //   })
   }
-  //   return fetch(BASE + '/user_histories')
-  //     .then((resp) => {
-  //       return resp.json()
-  //     })
-  //     .then(APIinfo => {
-  //       this.setState({
-  //         history: APIinfo
-  //         })
-  //       console.log(this.state.history);
-  //     })
-  // }
 
 
 
@@ -335,7 +335,7 @@ this.setState({ xvals: xvals, yvals: yvals, chartdata: chartdata})
 
                     <TableCell numeric style={{width: '60px',  padding: '8px', textAlign: 'center'}}></TableCell>
                     <TableCell numeric style={{width: '60px',  padding: '8px', textAlign: 'center'}}></TableCell>
-              
+
                   </TableRow>
                 );
               })}

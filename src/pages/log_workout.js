@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import {Paper, Button, Checkbox, Table, TableHead, TableCell, TableBody, TableRow, Input} from '@material-ui/core'
 import LogHeader from '../components/log_header'
+import AuthService from '../components/AuthService'  // <- We use the AuthService to logout
+
+const Auth = new AuthService()
+const BASE = 'http://localhost:3000'
 
 class LogWorkout extends Component{
   constructor(props){
     super(props)
     this.state = {
+
       checked: [],
       reps: [],
       weight: [],
@@ -45,6 +50,24 @@ class LogWorkout extends Component{
     }
 
   }
+
+
+  componentWillMount() {
+    let userID = Auth.getUserId()
+    console.log(userID);
+    return fetch(BASE + '/user_histories' +'?id=' + userID)
+      .then((resp) => {
+        return resp.json()
+      })
+      .then(APIinfo => {
+        this.setState({
+          history: APIinfo
+          })
+        console.log(this.state.history);
+      })
+  }
+
+
   isChecked(index){
   return this.state.checked[index]
   }
