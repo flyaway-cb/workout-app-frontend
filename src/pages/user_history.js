@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import ReactChartkick, { LineChart, PieChart } from 'react-chartkick'
-import Chart from 'chart.js'
+
 
 // ReactChartkick.addAdapter(Chart)
 

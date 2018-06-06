@@ -4,24 +4,22 @@ class Footer extends Component {
   render(){
     return(
       <div>
-        <footer class="footer-basic-centered">
+        <footer className="footer-basic-centered">
 
-			<p class="footer-company-motto">Making Fitness Fun!</p>
+			<p className="footer-company-motto">Making Fitness Fun!</p>
 
-			<p class="footer-links">
-				<a href="#">Login</a>
+			<p className="footer-links">
+				<a href="/login">Login</a>
 				·
-				<a href="#">Register</a>
+				<a href="/register">Register</a>
 				·
-				<a href="#">Group Workout</a>
+				<a href="/groupworkouts">Group Workout</a>
 				·
-				<a href="#">About Us</a>
-				·
-				<a href="#">Stats</a>
+				<a href="/aboutus">About Us</a>
 				·
 			</p>
 
-			<p class="footer-company-name">Fitology &copy; 2018</p>
+			<p className="footer-company-name">Fitology &copy; 2018</p>
 
 		</footer>
   </div>
