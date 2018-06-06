@@ -7,6 +7,8 @@ import Footer from './components/Footer'
 import { withRouter } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AuthService from './components/AuthService'
+import LoggedInNav from  './components/LoggedInNav'
+import GuestNav from './components/GuestNav'
 
 const BASE = 'http://localhost:3000'
 
@@ -25,7 +27,7 @@ class App extends Component {
     return (
       <div className="back">
         <CssBaseline />
-        <Navbar logout={this.handleLogout.bind(this)}/>
+        {Auth.loggedIn ? <LoggedInNav logout={this.handleLogout.bind(this)}/> : <GuestNav />}
         <Main/>
         <Footer />
       </div>
